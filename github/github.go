@@ -687,7 +687,7 @@ func (client *Client) LastStatusForContext(repo *github.Repository, SHA, context
 	name := repo.GetName()
 
 	statuses, _, err := client.Repositories.ListStatuses(client.Ctx, owner, name, SHA, &github.ListOptions{
-		PerPage: 100,
+		PerPage: 200,
 	})
 	if err != nil {
 		return "", err
@@ -699,7 +699,7 @@ func (client *Client) LastStatusForContext(repo *github.Repository, SHA, context
 		}
 	}
 
-	return "", errors.New("context not found in last 100 statuses")
+	return "", errors.New("context not found in last 200 statuses")
 }
 
 func (client *Client) ShaStatus(pr *github.PullRequest, SHA string) (bool, error) {
